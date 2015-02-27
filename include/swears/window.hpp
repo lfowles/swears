@@ -44,6 +44,7 @@ namespace Swears
         ~Window(void);
 
         static Window Create(const Vec2& origin, const Vec2& size);
+        void Clear(void);
 
     private:
         WINDOW* win;

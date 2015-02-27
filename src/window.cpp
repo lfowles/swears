@@ -63,3 +63,8 @@ void Window::SetAttr(int attr)
 {
     wattrset(win,attr);
 }
+
+void Window::Clear(void)
+{
+    ::wclear(win);
+}
