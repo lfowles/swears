@@ -55,3 +55,8 @@ void Curses::Draw(void)
 {
     doupdate();
 }
+
+void Curses::Cursor(Curses::Visibility level)
+{
+    ::curs_set(static_cast<int>(level));
+}

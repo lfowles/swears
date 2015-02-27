@@ -8,6 +8,12 @@ namespace Swears
     class Curses
     {
     public:
+        enum class Visibility
+        {
+            Invisible=0,
+            Visible=1,
+            VeryVisible=2
+        };
         Curses(void);
         ~Curses(void);
         void pause(void);
@@ -15,6 +21,7 @@ namespace Swears
         void echo(bool enable);
         void raw(bool enable);
         void Draw(void);
+        void Cursor(Visibility level);
 
         Window stdscr;
     };
