@@ -5,8 +5,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
 add_subdirectory(src)
 
 project(demo)
-include_directories("include")
-
+#include_directories("include")
 set(SOURCE_FILES main.cpp)
 add_executable(demo ${SOURCE_FILES})
+target_include_directories(demo PRIVATE include)
+
 target_link_libraries(demo swears)
