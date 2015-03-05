@@ -19,7 +19,7 @@ int main()
     curses.echo(false);
     auto term_size = curses.stdscr.Size();
     auto win = Swears::Window::Create({0,0}, term_size);
-    auto base_widget = std::shared_ptr<Swears::Widget>(new Swears::StaticWidget(term_size, win));
+    auto base_widget = std::shared_ptr<Swears::Widget>(new Swears::StaticWidget(term_size));
     auto grid_widget = std::shared_ptr<Swears::GridBox>(new Swears::GridBox());
     auto background_widget = std::shared_ptr<Swears::Widget>(new Swears::FillWidget({0,0}, '.'^0x20));
 
@@ -58,7 +58,7 @@ int main()
     base_widget->AddChild(background_widget);
     background_widget->AddChild(grid_widget);
 
-    base_widget->Draw(term_size, term_size);
+    base_widget->Draw(term_size, term_size, curses.stdscr);
 
     curses.Draw();
 

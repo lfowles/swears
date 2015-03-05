@@ -32,7 +32,7 @@ namespace Swears
 
         void AddChild(std::shared_ptr<Widget> child, const Swears::Vec2& grid_pos, const Swears::Vec2& grid_size);
 
-        virtual void Draw(Vec2& pos, Vec2& size) override;
+        virtual void Draw(Vec2& pos, Vec2& size, Window& window) override;
 
         void CalculateSize(void);
 

@@ -9,17 +9,15 @@ namespace Swears
     class StaticWidget : public Widget
     {
     public:
-        StaticWidget(const Vec2& size, Swears::Window& win) : static_size(size), window(std::move(win)) {};
+        StaticWidget(void) = default;
+        StaticWidget(const Vec2& size) : static_size(size) {};
 
         const Vec2 GetMinSize(void) { return static_size; }
 
-        virtual Swears::Window& GetWindow(void) override { return window; }
-
-        virtual void Draw(Vec2& pos, Vec2& size);
+        virtual void Draw(Vec2& pos, Vec2& size, Window& window);
 
     private:
         Vec2 static_size;
-        Swears::Window window;
     };
 }
 
