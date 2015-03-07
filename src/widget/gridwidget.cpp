@@ -31,13 +31,12 @@ void GridBox::AddChild(std::shared_ptr<Widget> child, const Swears::Vec2 &grid_p
     prev_size = Vec2();
 }
 
-void GridBox::Draw(Vec2 &pos, Vec2 &size)
+void GridBox::Draw(Vec2 &pos, Vec2 &size, Window &window)
 {
     if (pos != prev_pos or size != prev_size)
     {
         CalculateSize();
     }
-    auto& win = GetWindow();
 
     std::vector<int> expanded_row, expanded_col;
     expanded_row.resize(row_info.size());
@@ -110,7 +109,7 @@ void GridBox::Draw(Vec2 &pos, Vec2 &size)
                     child_size.x += col_info[x + col].size + expanded_col[x + col];
                 }
 
-                cell.widget->Draw(cell_origin, child_size);
+                cell.widget->Draw(cell_origin, child_size, window);
             }
             cell_origin.x += col_info[x].size + expanded_col[x];
             if (cell_origin.x > size.x)
@@ -125,7 +124,6 @@ void GridBox::Draw(Vec2 &pos, Vec2 &size)
             break;
         }
     }
-    win.Refresh();
 }
 
 void GridBox::CalculateSize(void)

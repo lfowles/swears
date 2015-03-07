@@ -10,7 +10,7 @@ namespace Swears
     public:
         FillWidget(const Vec2& minsize, char fill) : minsize(minsize), fill(fill) {};
 
-        virtual void Draw(Vec2 &pos, Vec2 &size) override;
+        virtual void Draw(Vec2 &pos, Vec2 &size, Window& window) override;
         virtual const Vec2 GetMinSize(void) override { return minsize; }
 
     private:
