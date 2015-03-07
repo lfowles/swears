@@ -64,6 +64,16 @@ void Window::SetAttr(int attr)
     wattrset(win,attr);
 }
 
+void Window::AttrOn(int attr)
+{
+    ::wattron(win,attr);
+}
+
+void Window::AttrOff(int attr)
+{
+    ::wattroff(win,attr);
+}
+
 void Window::Clear(void)
 {
     ::wclear(win);

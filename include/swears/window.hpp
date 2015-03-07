@@ -40,6 +40,8 @@ namespace Swears
         void Move(const Vec2& pos);
 
         void SetAttr(int attr);
+        void AttrOn(int attr);
+        void AttrOff(int attr);
 
         ~Window(void);
 
