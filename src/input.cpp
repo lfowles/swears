@@ -8,7 +8,7 @@ using namespace Swears;
 
 Input::Input(Window &win)
 {
-    //::keypad(win, true);
+    ::keypad(win, true);
     ::nodelay(win, true);
 }
 
