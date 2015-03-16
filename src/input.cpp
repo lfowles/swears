@@ -1,8 +1,9 @@
 #include <swears/input.hpp>
 
-#include <ncurses.h>
 #include <sys/select.h>
 #include <unistd.h>
+
+#include <swears/ncurses.hpp>
 
 using namespace Swears;
 

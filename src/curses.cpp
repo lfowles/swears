@@ -2,12 +2,13 @@
 
 #include <swears/helpers.hpp>
 
-#include <ncurses.h>
+#include <swears/ncurses.hpp>
 
 using namespace Swears;
 
 Curses::Curses(void)
 {
+    setlocale(LC_ALL, "en_US.utf8");
     WINDOW* win = initscr();
     if (win == nullptr)
     {

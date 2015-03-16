@@ -1,7 +1,7 @@
 #ifndef _SWEARS_INPUT_HPP_
 #define _SWEARS_INPUT_HPP_
 
-#include <ncurses.h>
+#include "ncurses.hpp"
 #include "window.hpp"
 
 namespace Swears

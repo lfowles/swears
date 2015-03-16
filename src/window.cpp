@@ -1,6 +1,6 @@
 #include <swears/window.hpp>
 
-#include <ncurses.h>
+#include <swears/ncurses.hpp>
 
 using namespace Swears;
 
@@ -17,14 +17,31 @@ void Window::Write(char c)
     ::waddch(win, c);
 }
 
+void Window::WriteWide(wchar_t c)
+{
+
+    cchar_t char_struct;
+    wchar_t f = c;
+    ::setcchar(&char_struct, &f, WA_NORMAL, 0, NULL);
+    ::wadd_wch(win, &char_struct);
+}
+
 void Window::Write(char c, const Vec2 &pos)
 {
     mvwaddch(win, pos.y, pos.x, c);
 }
 
+void Window::WriteWide(wchar_t c, const Vec2 &pos)
+{
+    auto char_struct = cchar_t{0, {c,0}};
+    mvwadd_wch(win, pos.y, pos.x, &char_struct);
+    //mvwaddch(win, pos.y, pos.x, c);
+}
+
 void Window::Write(const std::string str)
 {
     ::waddstr(win, str.c_str());
+
 }
 
 void Window::Write(std::string str, const Vec2 &pos)
@@ -37,6 +54,13 @@ Vec2 Window::Size(void)
     Vec2 size;
     getmaxyx(win, size.y, size.x);
     return size;
+}
+
+Vec2 Window::CursorPosition(void)
+{
+    Vec2 pos;
+    getyx(win, pos.y, pos.x);
+    return pos;
 }
 
 Window Window::Create(const Vec2& origin, const Vec2& size)

@@ -2,7 +2,7 @@
 #define _SWEARS_WINDOW_HPP_
 
 #include <string>
-#include <ncurses.h>
+#include "ncurses.hpp"
 #include "helpers.hpp"
 
 struct _win_st;
@@ -28,12 +28,15 @@ namespace Swears
         operator const WINDOW*() {return win;};
 
         void Write(char c);
+        void WriteWide(wchar_t c);
         void Write(char c, const Vec2 & pos);
+        void WriteWide(wchar_t c, const Vec2 & pos);
 
         void Write(const std::string str);
         void Write(const std::string str, const Vec2 & pos);
 
         Vec2 Size(void);
+        Vec2 CursorPosition(void);
         void Refresh(void);
 
         void Erase(void);
