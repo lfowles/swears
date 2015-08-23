@@ -6,6 +6,8 @@
 
 namespace Swears
 {
+    using MouseEvent = MEVENT;
+
     class Input
     {
     public:
@@ -13,6 +15,7 @@ namespace Swears
         //void start_loop(void);
         //void shutdown(void);
         int read(void);
+        MouseEvent read_mouse(void);
         bool has_input(void);
 
     private:
