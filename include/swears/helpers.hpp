@@ -25,6 +25,12 @@ namespace Swears
     public:
         CursesError(const std::string& msg) : std::runtime_error::runtime_error(msg) {};
     };
+
+    class WideSupportError : public std::logic_error
+    {
+    public:
+        using std::logic_error::logic_error;
+    };
 }
 
 #endif // _SWEARS_HELPERS_HPP_
