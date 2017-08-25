@@ -29,8 +29,7 @@ target_link_libraries(swears ${NCURSES_LIB})
 target_include_directories(swears PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include/>
         $<INSTALL_INTERFACE:include/>)
-target_compile_options(swears PUBLIC -Wall)
-target_compile_options(swears PRIVATE -Wextra)
+target_compile_options(swears PRIVATE -Wall -Wextra)
 
 install(TARGETS swears EXPORT swears
         LIBRARY DESTINATION lib

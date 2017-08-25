@@ -10,3 +10,4 @@ set(SOURCE_FILES main.cpp)
 add_executable(demo ${SOURCE_FILES})
 
 target_link_libraries(demo swears)
+target_compile_options(demo PRIVATE -Wall -Wextra)
