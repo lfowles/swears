@@ -1,4 +1,3 @@
-project(swears)
 set(HEADER_FILES
         ../include/swears/curses.hpp
         ../include/swears/helpers.hpp
