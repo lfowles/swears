@@ -91,9 +91,9 @@ void GridBox::Draw(Vec2 &pos, Vec2 &size, Window &window)
     }
 
     Vec2 cell_origin;
-    for (auto y = 0; y < row_info.size(); y++)
+    for (auto y = 0; y < static_cast<int>(row_info.size()); y++)
     {
-        for (auto x = 0; x < col_info.size(); x++)
+        for (auto x = 0; x < static_cast<int>(col_info.size()); x++)
         {
             auto &cell = GetCell(x, y);
             if (cell.widget_origin)
@@ -132,9 +132,9 @@ void GridBox::CalculateSize(void)
     auto normalized_row_size = 0;
     auto normalized_col_size = 0;
 
-    for (auto y = 0; y < col_info.size(); y++)
+    for (auto y = 0; y < static_cast<int>(col_info.size()); y++)
     {
-        for (auto x = 0; x < row_info.size(); x++)
+        for (auto x = 0; x < static_cast<int>(row_info.size()); x++)
         {
             auto& cell = GetCell(x, y);
             if (cell.widget)
@@ -207,19 +207,19 @@ const Vec2 GridBox::GetMinSize(void)
 GridCell &GridBox::GetCell(int x, int y)
 {
     // Resize if x or y out of bounds
-    if (y+1 > row_info.size())
+    if (y+1 > static_cast<int>(row_info.size()))
     {
         row_info.resize(y+1);
         grid.resize(y+1);
     }
-    if (x+1 > col_info.size())
+    if (x+1 > static_cast<int>(col_info.size()))
     {
         // Don't resize the individual arrays yet until they are actually needed
         col_info.resize(x+1);
     }
 
     auto& row = grid[y];
-    if (x+1 > row.size())
+    if (x+1 > static_cast<int>(row.size()))
     {
         row.resize(x+1, GridCell());
     }
@@ -230,7 +230,7 @@ GridCell &GridBox::GetCell(int x, int y)
 void GridBox::SetCell(int x, int y, GridCell c)
 {
     auto& cell = GetCell(x, y);
-    cell = c;
+    cell = std::move(c);
 }
 
 void GridBox::ClearCell(int x, int y)

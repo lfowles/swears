@@ -10,8 +10,8 @@ namespace Swears
 {
     struct GridSizeInfo
     {
-        unsigned int size;
-        unsigned int weight;
+        int size;
+        int weight;
     };
 
     struct GridCell

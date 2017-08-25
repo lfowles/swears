@@ -27,7 +27,7 @@ void Window::WriteWide(wchar_t c)
     ::wadd_wch(win, &char_struct);
 }
 #else
-void Window::WriteWide(wchar_t c)
+void Window::WriteWide(wchar_t)
 {
     throw WideSupportError("Not compiled against ncursesw.");
 }
@@ -47,7 +47,7 @@ void Window::WriteWide(wchar_t c, const Vec2 &pos)
     //mvwaddch(win, pos.y, pos.x, c);
 }
 #else
-void Window::WriteWide(wchar_t c, const Vec2 &pos)
+void Window::WriteWide(wchar_t, const Vec2 &)
 {
     throw WideSupportError("Not compiled against ncursesw.");
 }
