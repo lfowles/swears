@@ -14,16 +14,19 @@ namespace Swears
             Visible=1,
             VeryVisible=2
         };
-        Curses(void);
-        ~Curses(void);
-        void pause(void);
-        void refresh(void);
+        Curses();
+        ~Curses();
+        void pause();
+        void refresh();
         void echo(bool enable);
         void raw(bool enable);
-        void Draw(void);
+        void Draw();
         void Cursor(Visibility level);
+        Window& GetRoot();
+        const Window& GetRoot() const;
 
-        Window stdscr;
+    private:
+        Window root_win;
     };
 }
 

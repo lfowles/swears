@@ -10,8 +10,8 @@ namespace Swears
     public:
         Vec2() : Vec2(0,0) {};
         Vec2(int x, int y) : x(x), y(y) {};
-        Vec2 operator+(const Vec2& other) { return Vec2(x + other.x, y + other.y); };
-        Vec2 operator-(const Vec2& other) { return Vec2(x - other.x, y - other.y); };
+        Vec2 operator+(const Vec2& other) { return {x + other.x, y + other.y}; };
+        Vec2 operator-(const Vec2& other) { return {x - other.x, y - other.y}; };
         Vec2& operator+=(Vec2& other) { x += other.x; y += other.y; return *this; };
         Vec2& operator-=(Vec2& other) { x -= other.x; y -= other.y; return *this; };
         bool operator==(const Vec2& other) const { return (other.x == x and other.y == y); };
@@ -20,10 +20,11 @@ namespace Swears
         int y;
     };
 
+
     class CursesError : public std::runtime_error
     {
     public:
-        CursesError(const std::string& msg) : std::runtime_error::runtime_error(msg) {};
+        using std::runtime_error::runtime_error;
     };
 
     class WideSupportError : public std::logic_error

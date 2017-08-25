@@ -26,17 +26,17 @@ namespace Swears
     public:
         using GridBoxException = std::runtime_error;
 
-        virtual void AddChild(std::shared_ptr<Widget> child) override { AddChild(child, {0, 0}, {1, 1}); };
+        void AddChild(std::shared_ptr<Widget> child) override { AddChild(child, {0, 0}, {1, 1}); };
 
         void AddChild(std::shared_ptr<Widget> child, const Swears::Vec2& grid_pos) { AddChild(child, grid_pos, {1, 1}); };
 
         void AddChild(std::shared_ptr<Widget> child, const Swears::Vec2& grid_pos, const Swears::Vec2& grid_size);
 
-        virtual void Draw(Vec2& pos, Vec2& size, Window& window) override;
+        void Draw(Vec2& pos, Vec2& size, Window& window) override;
 
-        void CalculateSize(void);
+        void CalculateSize();
 
-        virtual const Vec2 GetMinSize(void) override;
+        virtual const Vec2 GetMinSize() override;
 
     private:
         GridCell& GetCell(int x, int y);

@@ -19,15 +19,15 @@ namespace Swears
         */
         virtual void Draw(Vec2 &pos, Vec2 &size, Window &window) = 0;
 
-        virtual const Vec2 GetMinSize(void) = 0;
+        virtual const Vec2 GetMinSize() = 0;
 
         virtual void AddChild(std::shared_ptr<Widget> new_child);
 
         virtual void SetParent(Widget *parentptr) { parent = parentptr; }
 
     protected:
-        Widget *parent;
-        std::shared_ptr<Widget> child;
+        Widget *parent{nullptr};
+        std::shared_ptr<Widget> child{};
     };
 }
 #endif // _SWEARS_WIDGETS_WIDGET_HPP_

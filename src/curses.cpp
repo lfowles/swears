@@ -6,28 +6,29 @@
 
 using namespace Swears;
 
-Curses::Curses(void)
+Curses::Curses()
 {
     setlocale(LC_ALL, "en_US.utf8");
-    WINDOW* win = initscr();
-    if (win == nullptr)
+    try
+    {
+        root_win = Window(::initscr());
+    } catch (const CursesError& e)
     {
         throw CursesError("ncurses failed to initialize, see stderr.");
     }
-    stdscr = Window(win);
 }
 
-Curses::~Curses(void)
+Curses::~Curses()
 {
     ::endwin();
 }
 
-void Curses::pause(void)
+void Curses::pause()
 {
-    ::getch();
+    getch();
 }
 
-void Curses::refresh(void)
+void Curses::refresh()
 {
     ::refresh();
 }
@@ -52,12 +53,20 @@ void Curses::raw(bool enable)
     }
 }
 
-void Curses::Draw(void)
+void Curses::Draw()
 {
-    doupdate();
+    ::doupdate();
 }
 
 void Curses::Cursor(Curses::Visibility level)
 {
     ::curs_set(static_cast<int>(level));
+}
+
+Window &Curses::GetRoot() {
+    return root_win;
+}
+
+const Window &Curses::GetRoot() const {
+    return root_win;
 }

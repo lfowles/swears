@@ -11,12 +11,12 @@ namespace Swears
     class Input
     {
     public:
-        Input(Window &win);
+        explicit Input(Window &win);
         //void start_loop(void);
         //void shutdown(void);
-        int read(void);
-        MouseEvent read_mouse(void);
-        bool has_input(void);
+        int read();
+        MouseEvent read_mouse();
+        bool has_input();
 
     private:
         //void loop(void);

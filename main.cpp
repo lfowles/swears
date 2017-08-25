@@ -14,13 +14,13 @@ int main()
 {
 
     Swears::Curses curses;
-    Swears::Input input(curses.stdscr);
+    Swears::Input input(curses.GetRoot());
     curses.raw(true);
     curses.echo(false);
-    auto term_size = curses.stdscr.Size();
+    auto term_size = curses.GetRoot().Size();
     auto win = Swears::Window::Create({0,0}, term_size);
     auto base_widget = std::shared_ptr<Swears::Widget>(new Swears::StaticWidget(term_size));
-    auto grid_widget = std::shared_ptr<Swears::GridBox>(new Swears::GridBox());
+    auto grid_widget = std::make_shared<Swears::GridBox>();
     auto background_widget = std::shared_ptr<Swears::Widget>(new Swears::FillWidget({0,0}, '.'^0x20));
 
     std::vector<std::pair<std::shared_ptr<Swears::Widget>, Swears::Vec2>> widgets;
@@ -50,7 +50,7 @@ int main()
         try
         {
             grid_widget->AddChild(widget.first, widget.second);
-        } catch (Swears::GridBox::GridBoxException e) {
+        } catch (const Swears::GridBox::GridBoxException& e) {
 
         }
     }
@@ -58,7 +58,7 @@ int main()
     base_widget->AddChild(background_widget);
     background_widget->AddChild(grid_widget);
 
-    base_widget->Draw(term_size, term_size, curses.stdscr);
+    base_widget->Draw(term_size, term_size, curses.GetRoot());
 
     curses.Draw();
 

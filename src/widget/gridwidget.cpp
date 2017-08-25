@@ -126,7 +126,7 @@ void GridBox::Draw(Vec2 &pos, Vec2 &size, Window &window)
     }
 }
 
-void GridBox::CalculateSize(void)
+void GridBox::CalculateSize()
 {
 
     auto normalized_row_size = 0;
@@ -142,18 +142,18 @@ void GridBox::CalculateSize(void)
                 auto minsize = cell.widget->GetMinSize();
                 auto avg_col_size = minsize.x/cell.widget_area.x;
                 auto avg_row_size = minsize.y/cell.widget_area.y;
-                if (col_info[x].weight and avg_col_size/col_info[x].weight > normalized_col_size)
+                if (col_info[x].weight > 0 and avg_col_size/col_info[x].weight > normalized_col_size)
                 {
                     normalized_col_size = avg_col_size/col_info[x].weight;
-                    if (avg_col_size%col_info[x].weight)
+                    if (avg_col_size%col_info[x].weight > 0)
                     {
                         normalized_col_size++;
                     }
                 }
-                if (row_info[y].weight and avg_row_size/row_info[y].weight > normalized_row_size)
+                if (row_info[y].weight > 0 and avg_row_size/row_info[y].weight > normalized_row_size)
                 {
                     normalized_row_size = avg_row_size/row_info[y].weight;
-                    if (avg_row_size%row_info[y].weight)
+                    if (avg_row_size%row_info[y].weight > 0)
                     {
                         normalized_row_size++;
                     }
@@ -174,7 +174,7 @@ void GridBox::CalculateSize(void)
 
     for (auto& row : row_info)
     {
-        if (row.weight)
+        if (row.weight > 0)
         {
             row.size = row.weight * normalized_row_size;
         }
@@ -182,7 +182,7 @@ void GridBox::CalculateSize(void)
 
     for (auto& col : col_info)
     {
-        if (col.weight)
+        if (col.weight > 0)
         {
             col.size = col.weight * normalized_col_size;
         }
@@ -190,7 +190,7 @@ void GridBox::CalculateSize(void)
 
 }
 
-const Vec2 GridBox::GetMinSize(void)
+const Vec2 GridBox::GetMinSize()
 {
     auto minsize = Vec2{0,0};
     for (auto& row : row_info)

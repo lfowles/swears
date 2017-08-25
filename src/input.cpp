@@ -10,24 +10,24 @@ using namespace Swears;
 
 Input::Input(Window &win)
 {
-    ::keypad(win, true);
-    ::mousemask(ALL_MOUSE_EVENTS, NULL); // If mouse support, blah blah blah
-    ::nodelay(win, true);
+    ::keypad(win.get(), true);
+    ::mousemask(ALL_MOUSE_EVENTS, nullptr); // If mouse support, blah blah blah
+    ::nodelay(win.get(), true);
 }
 
-int Input::read(void)
+int Input::read()
 {
     return getch();
 }
 
-MouseEvent Input::read_mouse(void)
+MouseEvent Input::read_mouse()
 {
     MouseEvent event;
     ::getmouse(&event);
     return event;
 }
 
-bool Input::has_input(void)
+bool Input::has_input()
 {
     fd_set readfds;
     auto timeout = timeval{0,0};
